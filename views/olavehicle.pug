@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the olavehicle page.
+  div(class="container-fluid")
+    div(class="row")
+      -
+        let olavehicle = [
+          {
+             "vehiclenumber": "sz123",
+              "numberofpassengers": 2,
+              "amount": "$ 12 \n"
+          },
+          {
+             "vehiclenumber": "sz543",
+              "numberofpassengers": 3,
+              "amount": "$ 15 \n"
+          },
+
+          {
+             "vehiclenumber": "s45f67",
+              "numberofpassengers": 4,
+              "amount": "$ 18\n"
+          }
+          
+        ]
+      each i,index in olavehicle
+        div(class="col-sm-2" onclick=`ride(${index})`) #{i.vehiclenumber}
+        div(class="col-sm-2" onclick=`ride(${index})`) #{i.numberofpassengers}
+        div(class="col-sm-2" onclick=`ride(${index})`) #{i.amount}
+  script.                
+      function ride(rides)
+      {
+        alert(`your booking rides count: ${rides+1}`)
+      }
