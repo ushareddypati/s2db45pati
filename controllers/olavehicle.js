@@ -30,15 +30,39 @@ exports.olavehicle_create_post = function(req, res) {
     res.send('NOT IMPLEMENTED: vehicle create POST'); 
 }; 
  
-// Handle Costume delete form on DELETE. 
-exports.olavehicle_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: vehicle delete DELETE ' + req.params.id); 
+// Handle Costume delete on DELETE. 
+exports.olavehicle_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Olavehicle.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
 }; 
  
-// Handle Costume update form on PUT. 
-exports.olavehicle_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: vehicle update PUT' + req.params.id); 
-};
+// Handle OlaVehicle update form on PUT. 
+exports.olavehicle_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Olavehicle.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.vehiclenumber)  
+               toUpdate.vehiclenumber = req.body.vehiclenumber; 
+        if(req.body.numberofpassengers) toUpdate.numberofpassengers = req.body.numberofpassengers; 
+        if(req.body.amount) toUpdate.amount = req.body.amount; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
+}; 
 
 //VIEWS 
 // Handle a show all view 
