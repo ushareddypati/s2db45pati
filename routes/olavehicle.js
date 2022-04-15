@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('olavehicle', { title: 'Search Results : olavehicle page' });
-});
-
-module.exports = router;
+var express = require('express'); 
+const olavehicle_controlers= require('../controllers/olavehicle'); 
+var router = express.Router(); 
+ 
+/* GET costumes */ 
+router.get('/', olavehicle_controlers.olavehicle_view_all_Page ); 
+module.exports = router; 
