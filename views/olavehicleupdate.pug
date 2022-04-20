@@ -1,0 +1,47 @@
+extends layout
+block content
+    h1= title
+    
+    if (toShow == null)
+        h2 No instance to Update
+    else
+      - let olavehicleid = toShow._id
+      - let olavehiclenumber= toShow.vehiclenumber
+      - let olanumberofpassengers= toShow.numberofpassengers
+      - let olaamount= toShow.amount
+      
+      div.row(class='mb-2')
+          div.mr-1 ID is
+          div #{olavehicleid}
+          - let actionid = "/resource/olavehicles/" + olavehicleid
+
+      form(id='OlavehicleForm', action= actionid, method="PUT")
+          div.form-group
+              label.olavehicleAttr(for='vehiclenumber') Olavehicle Number
+              input#vehiclenumber(type='text', name='vehiclenumber',class='form-control',value= olavehiclenumber)
+          div.form-group
+              label.olavehicleAttr(for='numberofpassengers') Olavehicle NumberOFPassengers
+              input#numberofpassengers(type='number', name='numberofpassengers',class='form-control',value= olanumberofpassengers)
+          div.form-group
+              label.olavehicleAttr(for='amount') Olavehicle Amount
+              input#amount(type='text', name='amount',class='form-control',value= olaamount)
+          input(type="submit",class='btn btn-primary')
+
+    script.
+       document.forms['OlavehicleForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        console.log(event.target)
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeded")
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error )
+        });
+      });

@@ -1,0 +1,25 @@
+extends layout
+block content
+    h1= title
+
+    if (toShow == null)
+        h2 No instance to Detail
+    else
+        - let olavehicleid = toShow._id
+        - let olavehiclenumber= toShow.vehiclenumber
+        - let olanumberofpassengers= toShow.numberofpassengers
+        - let olaamount= toShow.amount
+
+        div
+            div.row
+                div(class='olavehicleAttr mr-3') olavehicle ID is:
+                div #{olavehicleid}
+            div.row
+                div(class='olavehicleAttr mr-3') Olavehicle Number is:
+                div #{olavehiclenumber}
+            div.row
+                div(class='olavehicleAttr mr-3') Olavehicle NumberOFPassengers is:
+                div #{olanumberofpassengers}
+            div.row
+                div(class='olavehicleAttr mr-3') Olavehicle Amount is:
+                div #{olaamount}

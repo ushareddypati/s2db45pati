@@ -22,7 +22,9 @@ router.delete('/olavehicles/:id', olavehicle_controller.olavehicle_delete);
 router.put('/olavehicles/:id', olavehicle_controller.olavehicle_update_put); 
  
 // GET request for one Costume. 
-router.get('/olavehicles/:id', olavehicle_controller.olavehicle_detail); 
+router.get('/olavehicles/:id', olavehicle_controller.olavehicle_view_one_Page); 
+
+
  
 // GET request for list of all Costume items. 
 router.get('/olavehicles', olavehicle_controller.olavehicle_list); 
