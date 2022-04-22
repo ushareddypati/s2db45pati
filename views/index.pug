@@ -1,18 +1,11 @@
 extends layout
-
 block content
-  h1= title
-  p Welcome to #{title}
-  p loves cooking
-  br
-  - var btnType = 'primary'
-  - var btnSize = 'lg'
-  button(type="button", class="btn btn-danger",onclick="moreClaps()") Press  me
-  div(id = "target") Clap for me
-  script.
-    var clap_count=0;
-    
-    function moreClaps() {
-      clap_count=clap_count+2;
-      document.getElementById("target").innerHTML=`Value now ${clap_count}`;
-    }
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/olavehicles") Take me to Olavehicle page
+    br
+    a(href="/logout") Logout

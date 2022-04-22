@@ -2,35 +2,32 @@ extends layout
 
 block content
   h1= title
-  p Welcome to the olavehicle page.
+  - let olavehicles=results
+  - let destinationcreate = `dispatchCreate(\"/olavehicles/create\")`
   div(class="container-fluid")
-    div(class="row")
-      -
-        let olavehicle = [
-          {
-             "vehiclenumber": "sz123",
-              "numberofpassengers": 2,
-              "amount": "$ 12 \n"
-          },
-          {
-             "vehiclenumber": "sz543",
-              "numberofpassengers": 3,
-              "amount": "$ 15 \n"
-          },
-
-          {
-             "vehiclenumber": "s45f67",
-              "numberofpassengers": 4,
-              "amount": "$ 18\n"
-          }
-          
-        ]
-      each i,index in olavehicle
-        div(class="col-sm-2" onclick=`ride(${index})`) #{i.vehiclenumber}
-        div(class="col-sm-2" onclick=`ride(${index})`) #{i.numberofpassengers}
-        div(class="col-sm-2" onclick=`ride(${index})`) #{i.amount}
-  script.                
+    button.btn( class="btn-primary ml-1 btn-lg", onclick= destinationcreate) Create
+  div(class="row m-1")
+   
+    each olavehicle,index in olavehicles 
+      - let destinationupdate = `dispatch(\"/olavehicles/update?id=${olavehicle._id}\")`
+      -let destinationdetail =   `dispatch(\"/olavehicles/detail?id=${olavehicle._id}\")`
+      - let destinationdelete = `dispatchDelete(\"/olavehicles/delete?id=${olavehicle._id}\")`
+        div(class="col-sm-4  m-1" style=("font-weight:bolder")) #{olavehicle.vehiclenumber} - #{olavehicle.numberofpassengers} - #{olavehicle.amount}
+          button.btn( class="btn-success ml-1", onclick= destinationdetail) Detail
+          button.btn( class="btn-info ml-1", onclick= destinationupdate) Update
+          button.btn( class="btn-danger ml-1", onclick= destinationdelete) Delete
+  script.
+      function dispatch(path){
+      window.location.href=path
+      }
+      
       function ride(rides)
       {
         alert(`your booking rides count: ${rides+1}`)
+      }
+      function dispatchCreate(path){
+        window.location.href=path
+      }
+      function dispatchDelete(path){
+        window.location.href=path
       }

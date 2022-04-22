@@ -65,8 +65,8 @@ failed`);
 // Handle a show all view 
 exports.olavehicle_view_all_Page = async function (req, res) {
     try {
-        theolavehicles = await olavehicle.find();
-        res.render('olavehicles', { title: 'olavehicle Search Results', results: theolavehicles });
+        theolavehicles = await Olavehicle.find();
+        res.render('olavehicle', { title: 'olavehicle Search Results', results: theolavehicles });
     }
     catch (err) {
         res.status(500);
