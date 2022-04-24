@@ -5,13 +5,13 @@ block content
   div#errors(style:{display:block;}) 
   form(id='olavehicleForm', action="/resource/olavehicles", method="POST")
     div.form-group
-        label.costumeAttr(for='vehiclenumber') Olavehicle Number
+        label.olavehicleAttr(for='vehiclenumber') Olavehicle Number
         input#costumetype(type='text', name='vehiclenumber')
     div.form-group
-        label.costumeAttr(for='numberofpassengers') Olavehicle NumberOFPassengers
+        label.olavehicleAttr(for='numberofpassengers') Olavehicle NumberOFPassengers
         input#size(type='number', name='numberofpassengers')
     div.form-group
-        label.costumeAttr(for='amount') Olavehicle Amount
+        label.olavehicleAttr(for='amount') Olavehicle Amount
         input#cost(type='text', name='amount')
     input(type="submit")
 

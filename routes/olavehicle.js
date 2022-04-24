@@ -21,13 +21,11 @@ module.exports = router;
 router.get('/detail', olavehicle_controlers.olavehicle_view_one_Page);
 
 /* GET create costume page */
-router.get('/create', olavehicle_controlers.olavehicle_create_Page);
+router.get('/create',secured, olavehicle_controlers.olavehicle_create_Page);
 
 /* GET create update page */
-router.get('/update', olavehicle_controlers.olavehicle_update_Page);
+router.get('/update',secured, olavehicle_controlers.olavehicle_update_Page);
 
 /* GET delete costume page */
-router.get('/delete', olavehicle_controlers.olavehicle_delete_Page);
-/* GET update costume page */ 
-router.get('/update',secured, olavehicle_controlers.olavehicle_update_Page); 
+router.get('/delete',secured, olavehicle_controlers.olavehicle_delete_Page);
 

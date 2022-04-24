@@ -43,7 +43,7 @@ router.post('/register', function (req, res) {
     })
 })
 router.get('/login', function (req, res) {
-  res.render('login', { title: 'Fish app Login', user: req.user });
+  res.render('login', { title: 'Olavehicle app Login', user: req.user });
 });
 router.post('/login', passport.authenticate('local'), function (req, res) {
   if (req.session.returnTo)
@@ -59,3 +59,4 @@ router.get('/ping', function (req, res) {
   res.status(200);
 });
 module.exports = router;
+
